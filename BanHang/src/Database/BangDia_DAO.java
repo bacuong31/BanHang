@@ -27,26 +27,26 @@ public class BangDia_DAO {
 		return true;
 	}
 	
-	public static boolean softDeleteBangDia(String mabangdia) throws ClassNotFoundException, SQLException {
+	public static boolean softDeleteBangDia(BangDia bangdia) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		String sqlQuery = "UPDATE BANGDIA SET isActive = false WHERE MaBangDia = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, mabangdia);
+		pstmt.setString(1, bangdia.getMaBangDia());
 		int res = pstmt.executeUpdate();
 		if (res == 0)
 			throw new SQLException();
 		return true;
 		
 	}
-	public static int deleteBangDia(String mabangdia) throws SQLException, ClassNotFoundException{
-		Connection conn = DatabaseManager.getInstance().getConnection();
-		int res = 0;
-		String sqlQuery = "DELETE FROM BANGDIA WHERE MaBangDia = ?";
-		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, mabangdia);
-		res = pstmt.executeUpdate();
-		return res;
-	}
+//	public static int deleteBangDia(String mabangdia) throws SQLException, ClassNotFoundException{
+//		Connection conn = DatabaseManager.getInstance().getConnection();
+//		int res = 0;
+//		String sqlQuery = "DELETE FROM BANGDIA WHERE MaBangDia = ?";
+//		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+//		pstmt.setString(1, mabangdia);
+//		res = pstmt.executeUpdate();
+//		return res;
+//	}
 	
 	public static boolean updateBangDia(BangDia bangdia) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();

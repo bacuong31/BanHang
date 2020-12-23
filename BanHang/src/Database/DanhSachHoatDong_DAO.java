@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Object.DanhSachHoatDong;
+import Object.HoatDong;
 
 
 
@@ -15,10 +16,11 @@ public class DanhSachHoatDong_DAO {
 	public static boolean insertDanhSachHoatDong(DanhSachHoatDong dshoatdong) throws SQLException, ClassNotFoundException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
-		String sqlQuery = "INSERT INTO DANHSACHHOATDONG VALUES(?,?)";
+		String sqlQuery = "INSERT INTO DANHSACHHOATDONG VALUES(?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, dshoatdong.getMaHoatDong());
 		pstmt.setString(2, dshoatdong.getTenHoatDong());
+		pstmt.setBoolean(3, true);
 		res = pstmt.executeUpdate();
 		if (res == 0) {
 			return false;
@@ -26,16 +28,28 @@ public class DanhSachHoatDong_DAO {
 		return true;
 	}
 	
-	public static int deleteDanhSachHoatDong(String mahoatdong) throws SQLException, ClassNotFoundException{
+	public static int deleteDanhSachHoatDong(DanhSachHoatDong dshoatdong) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM DANHSACHHOATDONG WHERE MaHoatDong = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, mahoatdong);
+		pstmt.setString(1, dshoatdong.getMaHoatDong());
+		
+		for (HoatDong h : dshoatdong.getListReferenceHoatDong()) {
+			HoatDong_DAO.deleteHoatDong(h);
+		}
 		res = pstmt.executeUpdate();
 		return res;
 	}
 	
+	public static int softDeleteDanhSachHoatDong(DanhSachHoatDong dshoatdong) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "UPDATE DANHSACHHOATDONG SET isActive = false WHERE MaHoatDong = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, dshoatdong.getMaHoatDong());
+		int res = pstmt.executeUpdate();
+		return res;
+	}
 	public static boolean updateDanhSachHoatDong(DanhSachHoatDong dshoatdong) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		String sqlQuery = "UPDATE DANHSACHHOATDONG SET TenHoatDong = ? WHERE MaHoatDong = ?";
@@ -50,7 +64,7 @@ public class DanhSachHoatDong_DAO {
 	}
 	public static DanhSachHoatDong selectDanhSachHoatDong(String mahoatdong) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "SELECT * FROM DANHSACHHOATDONG WHERE MaHoatDong = ?";
+		String sqlQuery = "SELECT * FROM DANHSACHHOATDONG WHERE MaHoatDong = ? AND isActive = true";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, mahoatdong);
 		ResultSet rs = pstmt.executeQuery();
@@ -63,7 +77,7 @@ public class DanhSachHoatDong_DAO {
 	}
 	public static ArrayList<DanhSachHoatDong> getAll() throws ClassNotFoundException, SQLException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "SELECT * FROM DANHSACHHOATDONG";
+		String sqlQuery = "SELECT * FROM DANHSACHHOATDONG WHERE isActive = true";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		ResultSet rs = pstmt.executeQuery();
 		ArrayList<DanhSachHoatDong> arr = new ArrayList<DanhSachHoatDong>();

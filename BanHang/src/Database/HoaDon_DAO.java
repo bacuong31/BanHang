@@ -16,12 +16,13 @@ public class HoaDon_DAO {
 	public static boolean insertHoaDon(HoaDon hoadon) throws SQLException, ClassNotFoundException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
-		String sqlQuery = "INSERT INTO HOADON VALUES(?,?,?,?,?)";
+		String sqlQuery = "INSERT INTO HOADON VALUES(?,?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, hoadon.getMaHoaDon());
 		pstmt.setDate(2, hoadon.getNgayLapHoaDon());
 		pstmt.setDouble(3, hoadon.getGiaTri());
 		pstmt.setString(4, hoadon.getMota());
+		pstmt.setBoolean(6, true);
 		if (hoadon instanceof HoaDonChi) {
 			pstmt.setInt(5, 0);
 		}
@@ -37,16 +38,25 @@ public class HoaDon_DAO {
 		return true;
 	}
 	
-	public static int deleteHoaDon(String mahoadon) throws SQLException, ClassNotFoundException{
+	public static int deleteHoaDon(HoaDon hoadon) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM HOADON WHERE MaHoaDon = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, mahoadon);
+		pstmt.setString(1, hoadon.getMaHoaDon());
 		res = pstmt.executeUpdate();
 		return res;
 	}
 	
+	public static int softDeleteHoaDon(HoaDon hoadon) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "UPDATE HOADON SET isActive = false WHERE MaHoaDon = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, hoadon.getMaHoaDon());
+		int res = pstmt.executeUpdate();
+		return res;
+		
+	}
 	public static boolean updateHoaDon(HoaDon hoadon) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		String sqlQuery = "UPDATE HOADON SET NgayLapHoaDon = ? , GiaTri = ? , MoTa = ? WHERE MaHoaDon = ?";
@@ -63,7 +73,7 @@ public class HoaDon_DAO {
 	}
 	public static HoaDon selectHoaDon(String mahoadon) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "SELECT * FROM HOADON WHERE MaHoaDon = ?";
+		String sqlQuery = "SELECT * FROM HOADON WHERE MaHoaDon = ? AND isActive = true";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, mahoadon);
 		ResultSet rs = pstmt.executeQuery();
@@ -86,7 +96,7 @@ public class HoaDon_DAO {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		ArrayList<HoaDon> arr = new ArrayList<HoaDon>();
 		
-		String sqlQuery = "SELECT * FROM HOADON";
+		String sqlQuery = "SELECT * FROM HOADON WHERE isActive = true";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {

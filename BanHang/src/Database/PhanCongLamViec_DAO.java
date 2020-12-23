@@ -27,13 +27,13 @@ public class PhanCongLamViec_DAO {
 		return true;
 	}
 	
-	public static int deletePhanCong(String manv, String macalamviec) throws SQLException, ClassNotFoundException{
+	public static int deletePhanCong(PhanCongLamViec phanconglamviec) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM PHANCONGLAMVIEC WHERE MaNV = ? AND MaCaLamViec = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, manv);
-		pstmt.setString(2, macalamviec);
+		pstmt.setString(1, phanconglamviec.getMaNV());
+		pstmt.setString(2, phanconglamviec.getMaCaLamViec());
 		res = pstmt.executeUpdate();
 		return res;
 	}

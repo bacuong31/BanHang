@@ -29,12 +29,12 @@ public class YeuCauNhapDia_DAO {
 		return true;
 	}
 	
-	public static int deletetYeuCauNhapDia(String mayeucau) throws SQLException, ClassNotFoundException{
+	public static int deletetYeuCauNhapDia(YeuCauNhapDia yeucaunhapdia) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM YEUCAUNHAPDIA WHERE MaYeuCau = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, mayeucau);
+		pstmt.setString(1, yeucaunhapdia.getMaYeuCau());
 		res = pstmt.executeUpdate();
 		return res;
 	}

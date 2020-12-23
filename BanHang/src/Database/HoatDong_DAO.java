@@ -26,13 +26,13 @@ public class HoatDong_DAO {
 		return true;
 	}
 	
-	public static int deleteHoatDong(String manv, Timestamp time) throws SQLException, ClassNotFoundException{
+	public static int deleteHoatDong(HoatDong hoatdong) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM HOATDONG WHERE NhanVienThucHien = ? AND ThoiGianThucHien = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, manv);
-		pstmt.setTimestamp(2, time);
+		pstmt.setString(1, hoatdong.getNhanVienThucHien());
+		pstmt.setTimestamp(2, hoatdong.getThoiGianThucHien());
 		res = pstmt.executeUpdate();
 		return res;
 	}

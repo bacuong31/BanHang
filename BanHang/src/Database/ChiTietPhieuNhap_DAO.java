@@ -25,13 +25,13 @@ public class ChiTietPhieuNhap_DAO {
 		return true;
 	}
 	
-	public static int deleteChiTietPhieuNhap(String maphieunhap, String maloaibangdia) throws SQLException, ClassNotFoundException{
+	public static int deleteChiTietPhieuNhap(ChiTietPhieuNhap chitietphieunhap) throws SQLException, ClassNotFoundException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
 		String sqlQuery = "DELETE FROM CHITIETPHIEUNHAP WHERE MaPhieuNhap = ? AND MaLoaiBangDia = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, maphieunhap);
-		pstmt.setString(2, maloaibangdia);
+		pstmt.setString(1, chitietphieunhap.getMaPhieuNhap());
+		pstmt.setString(2, chitietphieunhap.getMaLoaiBangDia());
 		res = pstmt.executeUpdate();
 		return res;
 	}

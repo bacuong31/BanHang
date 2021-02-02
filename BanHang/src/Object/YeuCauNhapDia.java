@@ -1,10 +1,11 @@
 package Object;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class YeuCauNhapDia {
 	private String MaYeuCau;
-	private Date NgayYeuCau;
+	private LocalDate NgayYeuCau;
 	private String DonViCungCap;
 	private String TrangThaiNhap;
 	public String getMaYeuCau() {
@@ -13,10 +14,10 @@ public class YeuCauNhapDia {
 	public void setMaYeuCau(String maYeuCau) {
 		MaYeuCau = maYeuCau;
 	}
-	public Date getNgayYeuCau() {
+	public LocalDate getNgayYeuCau() {
 		return NgayYeuCau;
 	}
-	public void setNgayYeuCau(Date ngayYeuCau) {
+	public void setNgayYeuCau(LocalDate ngayYeuCau) {
 		NgayYeuCau = ngayYeuCau;
 	}
 	public String getDonViCungCap() {
@@ -31,7 +32,7 @@ public class YeuCauNhapDia {
 	public void setTrangThaiNhap(String trangThaiNhap) {
 		TrangThaiNhap = trangThaiNhap;
 	}
-	public YeuCauNhapDia(String maYeuCau, Date ngayYeuCau, String donViCungCap, String trangThaiNhap) {
+	public YeuCauNhapDia(String maYeuCau, LocalDate ngayYeuCau, String donViCungCap, String trangThaiNhap) {
 		super();
 		MaYeuCau = maYeuCau;
 		NgayYeuCau = ngayYeuCau;

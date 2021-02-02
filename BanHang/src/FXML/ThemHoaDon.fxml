@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="440.0" stylesheets="@../css/insertKhachHang.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ThemHoaDonController">
+   <children>
+      <Button fx:id="btnThem" layoutX="298.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClick" prefHeight="42.0" prefWidth="133.0" text="Thêm">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="404.0" prefWidth="418.0" spacing="15.0">
+         <children>
+            <Label text="Lập hóa đơn">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <GridPane prefHeight="317.0" prefWidth="410.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.20001220703125" minWidth="10.0" prefWidth="137.60001220703126" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="275.1999877929687" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Ngày lập hóa đơn:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Mô tả:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfNgayLap" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfMoTa" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Giá trị:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfGiaTri" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Loại hóa đơn:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Mã hóa đơn:">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfMaHoaDon" editable="false" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <RadioButton fx:id="rbHoaDonThu" layoutY="23.0" mnemonicParsing="false" selected="true" text="Hóa đơn thu">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="HoaDon" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rbHoaDonChi" layoutX="151.0" layoutY="23.0" mnemonicParsing="false" text="Hóa đơn chi" toggleGroup="$HoaDon">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <RadioButton layoutX="-225.0" layoutY="-8.0" mnemonicParsing="false" text="RadioButton" />
+   </children>
+</AnchorPane>

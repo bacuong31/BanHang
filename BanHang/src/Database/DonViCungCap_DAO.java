@@ -19,7 +19,7 @@ public class DonViCungCap_DAO {
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, donvicungcap.getMaDVCC());
 		pstmt.setString(2, donvicungcap.getTenDVCC());
-		pstmt.setString(3, donvicungcap.getSDT());
+		pstmt.setInt(3, donvicungcap.getSDT());
 		pstmt.setString(4, donvicungcap.getDiaChi());
 		pstmt.setBoolean(5, true);
 		res = pstmt.executeUpdate();
@@ -29,22 +29,22 @@ public class DonViCungCap_DAO {
 		return true;
 	}
 	
-	public static int deleteDonViCungCap(DonViCungCap donvicungcap) throws SQLException, ClassNotFoundException{
-		Connection conn = DatabaseManager.getInstance().getConnection();
-		int res = 0;
-		String sqlQuery = "DELETE FROM DONVICUNGCAP WHERE MaDVCC = ?";
-		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		pstmt.setString(1, donvicungcap.getMaDVCC());
-		for (YeuCauNhapDia y : donvicungcap.getListYeuCauNhapDia()) {
-			YeuCauNhapDia_DAO.deletetYeuCauNhapDia(y);
-		}
-		res = pstmt.executeUpdate();
-		return res;
-	}
+//	public static int deleteDonViCungCap(DonViCungCap donvicungcap) throws SQLException, ClassNotFoundException{
+//		Connection conn = DatabaseManager.getInstance().getConnection();
+//		int res = 0;
+//		String sqlQuery = "DELETE FROM DONVICUNGCAP WHERE MaDVCC = ?";
+//		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+//		pstmt.setString(1, donvicungcap.getMaDVCC());
+//		for (YeuCauNhapDia y : donvicungcap.getListYeuCauNhapDia()) {
+//			YeuCauNhapDia_DAO.deletetYeuCauNhapDia(y);
+//		}
+//		res = pstmt.executeUpdate();
+//		return res;
+//	}
 	
 	public static int softDeleteDonViCungCap(DonViCungCap donvicungcap) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "UPDATE DONVICUNGCAP SET isActive = false WHERE MaDVCC = ?";
+		String sqlQuery = "UPDATE DONVICUNGCAP SET isActive = 0 WHERE MaDVCC = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, donvicungcap.getMaDVCC());
 		int res = pstmt.executeUpdate();
@@ -57,7 +57,7 @@ public class DonViCungCap_DAO {
 		int res = 0;
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, donvicungcap.getTenDVCC());
-		pstmt.setString(2, donvicungcap.getSDT());
+		pstmt.setInt(2, donvicungcap.getSDT());
 		pstmt.setString(3, donvicungcap.getDiaChi());
 		pstmt.setString(4, donvicungcap.getMaDVCC());
 		res = pstmt.executeUpdate();
@@ -67,7 +67,7 @@ public class DonViCungCap_DAO {
 	}
 	public static DonViCungCap selectDonViCungCap(String madvcc) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "SELECT * FROM DONVICUNGCAP WHERE MaDVCC = ? AND isActive = true";
+		String sqlQuery = "SELECT * FROM DONVICUNGCAP WHERE MaDVCC = ? AND isActive = 1";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, madvcc);
 		ResultSet rs = pstmt.executeQuery();
@@ -75,20 +75,29 @@ public class DonViCungCap_DAO {
 		if(rs.next()) {
 			temp.setMaDVCC(rs.getString(1));
 			temp.setTenDVCC(rs.getString(2));
-			temp.setSDT(rs.getString(3));
+			temp.setSDT(rs.getInt(3));
 			temp.setDiaChi(rs.getString(4));
 		}
 		return temp;
 	}
-	public static ResultSet executeQueryselectDonViCungCap(String sqlQuery) throws ClassNotFoundException, SQLException {
+	public static ArrayList<DonViCungCap> executeQueryselectDonViCungCap(String sqlQuery) throws ClassNotFoundException, SQLException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		ResultSet rs = pstmt.executeQuery();
-		return rs;
+		ArrayList<DonViCungCap> arr = new ArrayList<DonViCungCap>();
+		while(rs.next()) {
+			DonViCungCap temp = new DonViCungCap();
+			temp.setMaDVCC(rs.getString(1));
+			temp.setTenDVCC(rs.getString(2));
+			temp.setSDT(rs.getInt(3));
+			temp.setDiaChi(rs.getString(4));
+			arr.add(temp);
+		}
+		return arr;
 	}
 	public static ArrayList<DonViCungCap> getAll() throws ClassNotFoundException, SQLException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
-		String sqlQuery = "SELECT * FROM DONVICUNGCAP WHERE isActive = true";
+		String sqlQuery = "SELECT * FROM DONVICUNGCAP WHERE isActive = 1";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		ArrayList<DonViCungCap> arr = new ArrayList<DonViCungCap>();
 		ResultSet rs = pstmt.executeQuery();
@@ -96,11 +105,24 @@ public class DonViCungCap_DAO {
 			DonViCungCap temp = new DonViCungCap();
 			temp.setMaDVCC(rs.getString(1));
 			temp.setTenDVCC(rs.getString(2));
-			temp.setSDT(rs.getString(3));
+			temp.setSDT(rs.getInt(3));
 			temp.setDiaChi(rs.getString(4));
 			arr.add(temp);
 		}
 		return arr;
+	}
+	
+	public static String getMaDVCCTheoTen(String tenDVCC) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT MaDVCC FROM DONVICUNGCAP WHERE TenDVCC = ?";
+		String maDVCC = "";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, tenDVCC);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			maDVCC = rs.getString(1);
+		}
+		return maDVCC;
 	}
 
 }

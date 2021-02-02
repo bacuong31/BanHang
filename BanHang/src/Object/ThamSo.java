@@ -3,7 +3,7 @@ package Object;
 public class ThamSo {
 	private String MaThamSo;
 	private String TenThamSo;
-	private String GiaTri;
+	private Double GiaTri;
 	private String ChuThich;
 	public String getMaThamSo() {
 		return MaThamSo;
@@ -17,10 +17,10 @@ public class ThamSo {
 	public void setTenThamSo(String tenThamSo) {
 		TenThamSo = tenThamSo;
 	}
-	public String getGiaTri() {
+	public Double getGiaTri() {
 		return GiaTri;
 	}
-	public void setGiaTri(String giaTri) {
+	public void setGiaTri(Double giaTri) {
 		GiaTri = giaTri;
 	}
 	public String getChuThich() {
@@ -29,7 +29,7 @@ public class ThamSo {
 	public void setChuThich(String chuThich) {
 		ChuThich = chuThich;
 	}
-	public ThamSo(String maThamSo, String tenThamSo, String giaTri, String chuThich) {
+	public ThamSo(String maThamSo, String tenThamSo, Double giaTri, String chuThich) {
 		super();
 		MaThamSo = maThamSo;
 		TenThamSo = tenThamSo;

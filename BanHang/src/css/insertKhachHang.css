@@ -1,0 +1,18 @@
+.button{
+	-fx-font-size: 14px;
+	-fx-font-family: Arial;
+	-fx-background-radius: 22;
+	-fx-background-color: #F56D4F;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+.button:hover{
+	-fx-background-color: #d1bfa9;
+}
+.button:pressed{
+	-fx-background-color:#9e9180;
+}
+
+.label{
+	-fx-font-family: Arial;
+}

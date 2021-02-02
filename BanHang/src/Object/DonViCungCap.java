@@ -3,9 +3,9 @@ package Object;
 import java.util.ArrayList;
 
 public class DonViCungCap {
-	private String MaDVCC;
+	private String MaDVCC = "";
 	private String TenDVCC;
-	private String SDT;
+	private int SDT;
 	private String DiaChi;
 	private ArrayList<YeuCauNhapDia> listYeuCauNhapDia;
 	
@@ -27,10 +27,10 @@ public class DonViCungCap {
 	public void setTenDVCC(String tenDVCC) {
 		TenDVCC = tenDVCC;
 	}
-	public String getSDT() {
+	public int getSDT() {
 		return SDT;
 	}
-	public void setSDT(String sDT) {
+	public void setSDT(int sDT) {
 		SDT = sDT;
 	}
 	public String getDiaChi() {
@@ -40,7 +40,7 @@ public class DonViCungCap {
 		DiaChi = diaChi;
 	}
 
-	public DonViCungCap(String maDVCC, String tenDVCC, String sDT, String diaChi,
+	public DonViCungCap(String maDVCC, String tenDVCC, int sDT, String diaChi,
 			ArrayList<YeuCauNhapDia> listYeuCauNhapDia) {
 		super();
 		MaDVCC = maDVCC;

@@ -1,31 +1,40 @@
 package Object;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class PhieuChoThueDia {
 	private String MaPhieuThue;
-	private Date NgayThue;
-	private Date NgayHenTra;
+	private LocalDate NgayThue;
+	private LocalDate NgayHenTra;
 	private String KhachHangThue;
 	private String NhanVienTiepNhan;
 	private String HoaDonDatCoc;
+	private String TinhTrang;
 	
+	
+	public String getTinhTrang() {
+		return TinhTrang;
+	}
+	public void setTinhTrang(String tinhTrang) {
+		TinhTrang = tinhTrang;
+	}
 	public String getMaPhieuThue() {
 		return MaPhieuThue;
 	}
 	public void setMaPhieuThue(String maPhieuThue) {
 		MaPhieuThue = maPhieuThue;
 	}
-	public Date getNgayThue() {
+	public LocalDate getNgayThue() {
 		return NgayThue;
 	}
-	public void setNgayThue(Date ngayThue) {
+	public void setNgayThue(LocalDate ngayThue) {
 		NgayThue = ngayThue;
 	}
-	public Date getNgayHenTra() {
+	public LocalDate getNgayHenTra() {
 		return NgayHenTra;
 	}
-	public void setNgayHenTra(Date ngayHenTra) {
+	public void setNgayHenTra(LocalDate ngayHenTra) {
 		NgayHenTra = ngayHenTra;
 	}
 	public String getKhachHangThue() {
@@ -46,9 +55,10 @@ public class PhieuChoThueDia {
 	public void setHoaDonDatCoc(String hoaDonDatCoc) {
 		HoaDonDatCoc = hoaDonDatCoc;
 	}
+
 	
-	public PhieuChoThueDia(String maPhieuThue, Date ngayThue, Date ngayHenTra, String khachHangThue,
-			String nhanVienTiepNhan, String hoaDonDatCoc) {
+	public PhieuChoThueDia(String maPhieuThue, LocalDate ngayThue, LocalDate ngayHenTra, String khachHangThue,
+			String nhanVienTiepNhan, String hoaDonDatCoc, String tinhTrang) {
 		super();
 		MaPhieuThue = maPhieuThue;
 		NgayThue = ngayThue;
@@ -56,8 +66,8 @@ public class PhieuChoThueDia {
 		KhachHangThue = khachHangThue;
 		NhanVienTiepNhan = nhanVienTiepNhan;
 		HoaDonDatCoc = hoaDonDatCoc;
+		TinhTrang = tinhTrang;
 	}
-	
 	public PhieuChoThueDia() {
 		
 	}

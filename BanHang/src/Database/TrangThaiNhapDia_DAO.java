@@ -81,5 +81,18 @@ public class TrangThaiNhapDia_DAO {
 		}
 		return arr;
 	}
+	
+	public static String getMaTheoTen(String ten) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT MaTrangThai FROM TRANGTHAINHAPDIA WHERE TenTrangThai = ?";
+		String maTT = "";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, ten);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			maTT = rs.getString(1);
+		}
+		return maTT;
+	}
 
 }

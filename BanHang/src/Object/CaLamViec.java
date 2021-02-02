@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 public class CaLamViec {
-	private String MaCaLamViec;
+	private String MaCaLamViec = "";
 	private Time ThoiGianBatDau;
 	private Time ThoiGianKetThuc;
 	private ArrayList<PhanCongLamViec> listPhanCong;

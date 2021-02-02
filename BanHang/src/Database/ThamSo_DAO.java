@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Object.BangDia;
 import Object.ThamSo;
+import Perform_Object.QuyDinh_Perform;
 
 
 public class ThamSo_DAO {
@@ -18,7 +19,7 @@ public class ThamSo_DAO {
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, thamso.getMaThamSo());
 		pstmt.setString(2, thamso.getTenThamSo());
-		pstmt.setString(3, thamso.getGiaTri());
+		pstmt.setDouble(3, thamso.getGiaTri());
 		pstmt.setString(4, thamso.getChuThich());
 		res = pstmt.executeUpdate();
 		if (res == 0) {
@@ -44,7 +45,7 @@ public class ThamSo_DAO {
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		
 		pstmt.setString(1, thamso.getTenThamSo());
-		pstmt.setString(2, thamso.getGiaTri());
+		pstmt.setDouble(2, thamso.getGiaTri());
 		pstmt.setString(3, thamso.getChuThich());
 		pstmt.setString(4, thamso.getMaThamSo());
 		
@@ -63,7 +64,7 @@ public class ThamSo_DAO {
 		if(rs.next()) {
 			temp.setMaThamSo(rs.getString(1));
 			temp.setTenThamSo(rs.getString(2));
-			temp.setGiaTri(rs.getString(3));
+			temp.setGiaTri(rs.getDouble(3));
 			temp.setChuThich(rs.getString(4));
 		}
 		return temp;
@@ -74,21 +75,73 @@ public class ThamSo_DAO {
 		ResultSet rs = pstmt.executeQuery();
 		return rs;
 	}
-	public static ArrayList<ThamSo> getAll() throws ClassNotFoundException, SQLException{
+	public static ArrayList<QuyDinh_Perform> getAll() throws ClassNotFoundException, SQLException{
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		String sqlQuery = "SELECT * FROM THAMSO";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-		ArrayList<ThamSo> arr = new ArrayList<ThamSo>();
+		ArrayList<QuyDinh_Perform> arr = new ArrayList<QuyDinh_Perform>();
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			ThamSo temp = new ThamSo();
-			temp.setMaThamSo(rs.getString(1));
-			temp.setTenThamSo(rs.getString(2));
-			temp.setGiaTri(rs.getString(3));
+			QuyDinh_Perform temp = new QuyDinh_Perform();
+			temp.setMaQuyDinh(rs.getString(1));
+			temp.setTenQuyDinh(rs.getString(2));
+			temp.setGiaTri(rs.getDouble(3));
 			temp.setChuThich(rs.getString(4));
 			arr.add(temp);
 		}
 		return arr;
+	}
+
+	public static Double getHeSoThueDiaNguyenVen() throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT GiaTri FROM THAMSO WHERE TenThamSo = 'Hệ số tiền thuê đĩa nguyên vẹn'";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		Double s = 0.0;
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			s = rs.getDouble(1);
+		}
+		return s;
+	}
+
+	public static Double getHeSoTienCoc() throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT GiaTri FROM THAMSO WHERE TenThamSo = 'Hệ số tiền đặt cọc'";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		Double s = 0.0;
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			s = rs.getDouble(1);
+		}
+		return s;
+		
+	}
+
+	public static double getHeSoTheoTen(String ten) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT GiaTri FROM THAMSO WHERE TenThamSo = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, ten);
+		Double s = 0.0;
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			s = rs.getDouble(1);
+		}
+		return s;
+	}
+
+	public static double getTienPhat() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT GiaTri FROM THAMSO WHERE TenThamSo = 'Tiền phạt mỗi ngày sau khi thuê quá hạn'";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		Double s = 0.0;
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			s = rs.getDouble(1);
+		}
+		return s;
+	
 	}
 
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DonViCungCapController">
+   <children>
+      <GridPane layoutX="11.0" layoutY="88.0" prefHeight="525.0" prefWidth="810.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="220.19998779296876" minHeight="10.0" prefHeight="47.200006103515626" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="489.6000030517578" minHeight="10.0" prefHeight="413.3999755859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="489.6000030517578" minHeight="10.0" prefHeight="64.60002441406249" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TableView fx:id="tableViewDVCC" prefHeight="401.0" prefWidth="810.0" stylesheets="@../css/KhachHang.css" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn fx:id="columnMaDVCC" editable="false" prefWidth="147.99996662139893" text="Mã đơn vị cung cấp" />
+                  <TableColumn fx:id="columnTenDVCC" editable="false" prefWidth="250.40003967285156" text="Tên đơn vị cung cấp" />
+                  <TableColumn fx:id="columnSDT" prefWidth="155.199951171875" text="Số điện thoại" />
+                  <TableColumn fx:id="columnDiaChi" prefWidth="257.60009765625" text="Địa chỉ" />
+               </columns>
+            </TableView>
+            <Pane prefHeight="50.0" prefWidth="823.0">
+               <children>
+                  <TextField fx:id="tfTenDVCC" layoutY="7.0" onKeyPressed="#keyPressed" prefHeight="30.0" prefWidth="400.0" promptText="Nhập tên đơn vị cung cấp">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="btnTimKiem" layoutX="428.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClick" prefHeight="30.0" prefWidth="162.0" text="Tìm kiếm">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnThemDVCC" layoutX="603.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClick" prefHeight="30.0" prefWidth="209.0" text="Thêm đơn vị cung cấp">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/addIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EEEEEE;" stylesheets="@../css/ButtonEdit_Details.css" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="btnChinhSua" layoutX="498.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="141.0" text="Chỉnh sửa" />
+                  <Button fx:id="btnXoa" layoutX="669.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="141.0" text="Xóa" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+      <Pane layoutX="3.0" prefHeight="84.0" prefWidth="823.0" style="-fx-background-color: #EEEEEE;" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0">
+         <children>
+            <Label layoutX="327.0" layoutY="27.0" text="Nhà cung cấp" textFill="#58337a">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

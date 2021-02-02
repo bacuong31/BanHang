@@ -80,5 +80,28 @@ public class LoaiNoiDung_DAO {
 		}
 		return arr;
 	}
+	public static ArrayList<String> getAllTenLoaiNoiDung() throws ClassNotFoundException, SQLException{
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT * FROM LOAINOIDUNG";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		ArrayList<String> arr = new ArrayList<String>();
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			String temp = rs.getString(2);
+			arr.add(temp);
+		}
+		return arr;
+	}
+	
+	public static String getMaLoaiNoiDung(String tenLoaiNoiDung) throws ClassNotFoundException, SQLException{
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT * FROM LOAINOIDUNG WHERE TenLoaiNoiDung = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, tenLoaiNoiDung);
+		ResultSet rs = pstmt.executeQuery();
+		String temp = rs.getString(1);
+		return temp;
+	}
+	
 
 }

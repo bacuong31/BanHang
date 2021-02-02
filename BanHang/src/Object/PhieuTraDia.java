@@ -1,16 +1,17 @@
 package Object;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class PhieuTraDia {
 	private String MaPhieuTra;
 	private String PhieuThamChieu;
-	private Date NgayTra;
+	private LocalDate NgayTra;
 	private String MaNhanVien;
 	private String HoaDonBoiThuong;
 	private String HoaDonHoanTra;
 	
-	public PhieuTraDia(String maPhieuTra, String phieuThamChieu, Date ngayTra, String maNhanVien,
+	public PhieuTraDia(String maPhieuTra, String phieuThamChieu, LocalDate ngayTra, String maNhanVien,
 			String hoaDonBoiThuong, String hoaDonHoanTra) {
 		super();
 		MaPhieuTra = maPhieuTra;
@@ -35,10 +36,10 @@ public class PhieuTraDia {
 	public void setPhieuThamChieu(String phieuThamChieu) {
 		PhieuThamChieu = phieuThamChieu;
 	}
-	public Date getNgayTra() {
+	public LocalDate getNgayTra() {
 		return NgayTra;
 	}
-	public void setNgayTra(Date ngayTra) {
+	public void setNgayTra(LocalDate ngayTra) {
 		NgayTra = ngayTra;
 	}
 	public String getMaNhanVien() {

@@ -1,10 +1,12 @@
 package Object;
 
 public class LoaiBangDia {
+	
 	private String MaLoaiBangDia;
 	private String TenLoaiBangDia;
 	private String MaLoaiNoiDung;
 	private double GiaTri;
+
 	public String getMaLoaiBangDia() {
 		return MaLoaiBangDia;
 	}

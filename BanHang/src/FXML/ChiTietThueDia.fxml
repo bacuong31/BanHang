@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="547.0" prefWidth="480.0" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Label text="Thông tin phiếu thuê">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <GridPane prefHeight="245.0" prefWidth="471.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.20001220703125" minWidth="10.0" prefWidth="148.00001220703126" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.79998779296875" minWidth="10.0" prefWidth="332.79998779296875" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Mã phiếu thuê:">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ngày thuê:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Khách hàng thuê:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Ngày hẹn trả:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Nhân viên tiếp nhận:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Tổng tiền thuê:" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox prefHeight="26.0" prefWidth="337.0" GridPane.columnIndex="1" />
+                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Tiền đặt cọc:" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+            <Separator prefWidth="200.0" />
+            <Label text="Danh sách đĩa thuê">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn editable="false" prefWidth="104.79998588562012" text="Mã băng đĩa" />
+                <TableColumn editable="false" prefWidth="196.00000762939453" text="Tên băng đĩa" />
+                  <TableColumn editable="false" prefWidth="180.0" sortable="false" text="Nội dung" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

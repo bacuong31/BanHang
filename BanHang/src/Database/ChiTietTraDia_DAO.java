@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 import Object.BangDia;
 import Object.ChiTietTraDia;
+import Perform_Object.ChiTietTraDia_Perform;
 
 public class ChiTietTraDia_DAO {
 	public static boolean insertChiTietTraDia(ChiTietTraDia chitiettradia) throws SQLException, ClassNotFoundException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
-		String sqlQuery = "INSERT INTO CHITIETTHUEDIA VALUES(?,?,?)";
+		String sqlQuery = "INSERT INTO CHITIETTRADIA VALUES(?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1, chitiettradia.getMaPhieuTra());
 		pstmt.setString(2, chitiettradia.getMaBangDia());
@@ -84,6 +85,25 @@ public class ChiTietTraDia_DAO {
 			arr.add(temp);
 		}
 		return arr;
+	}
+
+	public static ArrayList<ChiTietTraDia_Perform> getAllChiTietTraDiaPerform(String maPhieuTra) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT CHITIETTRADIA.MaBangDia, TenLoaiBangDia, TenTrangThai FROM CHITIETTRADIA, BANGDIA, LOAIBANGDIA, TRANGTHAIDIA WHERE BANGDIA.MaBangDia = CHITIETTRADIA.MaBangDia"
+				+ " AND BANGDIA.MaLoaiBangDia = LOAIBANGDIA.MaLoaiBangDia AND CHITIETTRADIA.TrangThaiDia = TRANGTHAIDIA.MaTrangThai AND MaPhieuTra = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, maPhieuTra);
+		ArrayList<ChiTietTraDia_Perform> arr = new ArrayList<ChiTietTraDia_Perform>();
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			ChiTietTraDia_Perform temp = new ChiTietTraDia_Perform();
+			temp.setMaBangDia(rs.getString(1));
+			temp.setTenBangDia(rs.getString(2));
+			temp.setTrangThai(rs.getString(3));
+			arr.add(temp);
+		}
+		return arr;
+
 	}
 
 }

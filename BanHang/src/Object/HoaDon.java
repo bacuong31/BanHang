@@ -1,17 +1,17 @@
 package Object;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class HoaDon {
 	private String MaHoaDon;
-	private Date NgayLapHoaDon;
+	private LocalDate NgayLapHoaDon;
 	private double GiaTri;
 	private String Mota;
-	protected String MaLoaiHoaDon;
+	
 	public HoaDon() {
 		
 	}
-	public HoaDon(String maHoaDon, Date ngayLapHoaDon, double giaTri, String mota) {
+	public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, double giaTri, String mota) {
 		super();
 		MaHoaDon = maHoaDon;
 		NgayLapHoaDon = ngayLapHoaDon;
@@ -24,10 +24,10 @@ public class HoaDon {
 	public void setMaHoaDon(String maHoaDon) {
 		MaHoaDon = maHoaDon;
 	}
-	public Date getNgayLapHoaDon() {
+	public LocalDate getNgayLapHoaDon() {
 		return NgayLapHoaDon;
 	}
-	public void setNgayLapHoaDon(Date ngayLapHoaDon) {
+	public void setNgayLapHoaDon(LocalDate ngayLapHoaDon) {
 		NgayLapHoaDon = ngayLapHoaDon;
 	}
 	public double getGiaTri() {

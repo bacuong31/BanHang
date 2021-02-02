@@ -1,0 +1,19 @@
+.button{
+	-fx-font-size: 14px;
+	-fx-font-family: Arial;
+	-fx-background-radius: 22;
+	-fx-background-color: #5C6E88;
+	-fx-text-fill: white;
+
+}
+.button:hover{
+	-fx-background-color: #5A565C;
+	
+}
+.button:pressed{
+	-fx-font-size: 14px;
+	-fx-font-family: Arial;
+	-fx-background-radius: 22;
+	-fx-background-color: #38363A;
+	-fx-text-fill: white;
+}

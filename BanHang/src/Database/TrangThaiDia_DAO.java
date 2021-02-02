@@ -15,10 +15,11 @@ public class TrangThaiDia_DAO {
 	public static boolean insertTrangThaiDia(TrangThaiDia trangthaidia) throws SQLException, ClassNotFoundException {
 		Connection conn = DatabaseManager.getInstance().getConnection();
 		int res = 0;
-		String sqlQuery = "INSERT INTO TRANGTHAIDIA VALUES(?,?)";
+		String sqlQuery = "INSERT INTO TRANGTHAIDIA VALUES(?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
 		pstmt.setString(1,trangthaidia.getMaTrangThai());
 		pstmt.setString(2, trangthaidia.getTenTrangThai());
+		pstmt.setDouble(3, trangthaidia.getHeSoGiaTri());
 		res = pstmt.executeUpdate();
 		if (res == 0) {
 			return false;
@@ -80,6 +81,20 @@ public class TrangThaiDia_DAO {
 			arr.add(temp);
 		}
 		return arr;
+	}
+
+	public static String getMaTrangThaiTheoTen(String ten) throws ClassNotFoundException, SQLException {
+		Connection conn = DatabaseManager.getInstance().getConnection();
+		String sqlQuery = "SELECT MaTrangThai FROM TRANGTHAIDIA WHERE TenTrangThai = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+		pstmt.setString(1, ten);
+		ResultSet rs = pstmt.executeQuery();
+		String maTT = null;
+		if(rs.next()) {
+			maTT = rs.getString(1);
+		}
+		return maTT;
+		
 	}
 
 }

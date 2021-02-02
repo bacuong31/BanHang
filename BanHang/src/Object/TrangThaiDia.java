@@ -3,6 +3,15 @@ package Object;
 public class TrangThaiDia {
 	private String MaTrangThai;
 	private String TenTrangThai;
+	private double HeSoGiaTri;
+	
+	
+	public double getHeSoGiaTri() {
+		return HeSoGiaTri;
+	}
+	public void setHeSoGiaTri(double heSoGiaTri) {
+		HeSoGiaTri = heSoGiaTri;
+	}
 	public String getMaTrangThai() {
 		return MaTrangThai;
 	}
@@ -18,10 +27,11 @@ public class TrangThaiDia {
 	public TrangThaiDia() {
 		
 	}
-	public TrangThaiDia(String maTrangThai, String tenTrangThai) {
+	public TrangThaiDia(String maTrangThai, String tenTrangThai, double heSoGiaTri) {
 		super();
 		MaTrangThai = maTrangThai;
 		TenTrangThai = tenTrangThai;
+		HeSoGiaTri = heSoGiaTri;
 	}
-	
+
 }

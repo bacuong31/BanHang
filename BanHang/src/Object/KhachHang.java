@@ -1,24 +1,59 @@
 package Object;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class KhachHang {
-	private String MaKH;
+	private String MaKH = "";
 	private String HoTen;
-	private Date NgaySinh;
+	private LocalDate NgaySinh;
+	private int Sdt;
 	private boolean LaKHQuen;
 	private double TienDu;
+	private String DiaChi;
+	private ArrayList<PhieuChoThueDia> listPhieuChoThueDia;
 	
-	public KhachHang() {}
 	
-	public KhachHang(String makh, String hoten, Date ngaysinh, Boolean lakhQuen, double tiendu) {
-		MaKH = makh;
-		HoTen = hoten;
-		NgaySinh = ngaysinh;
-		LaKHQuen = lakhQuen;
-		TienDu = tiendu;
+	public int getSdt() {
+		return Sdt;
 	}
-	
+
+	public void setSdt(int sdt) {
+		Sdt = sdt;
+	}
+
+	public String getDiaChi() {
+		return DiaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		DiaChi = diaChi;
+	}
+
+	public ArrayList<PhieuChoThueDia> getListPhieuChoThueDia() {
+		return listPhieuChoThueDia;
+	}
+
+	public void setListPhieuChoThueDia(ArrayList<PhieuChoThueDia> listPhieuChoThueDia) {
+		this.listPhieuChoThueDia = listPhieuChoThueDia;
+	}
+
+	public KhachHang() {}
+
+	public KhachHang(String maKH, String hoTen, LocalDate ngaySinh, int sdt, boolean laKHQuen, double tienDu, String diaChi,
+			ArrayList<PhieuChoThueDia> listPhieuChoThueDia) {
+		super();
+		MaKH = maKH;
+		HoTen = hoTen;
+		NgaySinh = ngaySinh;
+		Sdt = sdt;
+		LaKHQuen = laKHQuen;
+		TienDu = tienDu;
+		DiaChi = diaChi;
+		this.listPhieuChoThueDia = listPhieuChoThueDia;
+	}
+
 	public void DangKyKHQuen() {
 		LaKHQuen = true;
 	}
@@ -43,11 +78,11 @@ public class KhachHang {
 		HoTen = hoTen;
 	}
 
-	public Date getNgaySinh() {
+	public LocalDate getNgaySinh() {
 		return NgaySinh;
 	}
 
-	public void setNgaySinh(Date ngaySinh) {
+	public void setNgaySinh(LocalDate ngaySinh) {
 		NgaySinh = ngaySinh;
 	}
 

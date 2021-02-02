@@ -3,8 +3,25 @@ package Object;
 public class BangDia {
 	private String MaBangDia;
 	private String MaLoaiBangDia;
-	private String TrangThai;
+	private String MaTrangThai;
+	private boolean DangChoThue;
 	
+	public String getMaTrangThai() {
+		return MaTrangThai;
+	}
+
+	public void setMaTrangThai(String maTrangThai) {
+		MaTrangThai = maTrangThai;
+	}
+
+	public boolean isDangChoThue() {
+		return DangChoThue;
+	}
+
+	public void setDangChoThue(boolean dangChoThue) {
+		DangChoThue = dangChoThue;
+	}
+
 	public String getMaBangDia() {
 		return MaBangDia;
 	}
@@ -22,19 +39,21 @@ public class BangDia {
 	}
 
 	public String getTrangThai() {
-		return TrangThai;
+		return MaTrangThai;
 	}
 
 	public void setTrangThai(String trangThai) {
-		TrangThai = trangThai;
+		MaTrangThai = trangThai;
 	}
 
-	public BangDia(String maBangDia, String maLoaiBangDia, String trangThai) {
+
+	public BangDia(String maBangDia, String maLoaiBangDia, String maTrangThai, boolean dangChoThue) {
 		super();
 		MaBangDia = maBangDia;
 		MaLoaiBangDia = maLoaiBangDia;
-		TrangThai = trangThai;
+		MaTrangThai = maTrangThai;
+		DangChoThue = dangChoThue;
 	}
-	
+
 	public BangDia() {}
 }
